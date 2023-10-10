@@ -22,11 +22,14 @@
 		"vscode": {
 			"settings": {},
 			"extensions": [
-				// "streetsidesoftware.code-spell-checker",
-				// "WyattFerguson.jinja2-snippet-kit",
-				// "njpwerner.autodocstring"
+				"streetsidesoftware.code-spell-checker",
+				"WyattFerguson.jinja2-snippet-kit",
+				"samuelcolvin.jinjahtml",
+				"ms-azuretools.vscode-docker",
+				"njpwerner.autodocstring",
 				"ms-python.python",
-				"ms-python.vscode-pylance"
+				"ms-python.vscode-pylance",
+				"ms-python.autopep8"
 			]
 		}
 	}
