@@ -1,0 +1,298 @@
+/* unsets */
+
+:root {
+    --ff-title: "Playfair Display", serif;
+    --ff-body: "Assistant", sans-serif;
+
+    --fz-body: 18px;
+
+    --col-body: linear-gradient(135deg,
+            hsl(0, 0%, 97%) 0%,
+            hsl(0, 0%, 93%) 100%);
+    --col-link: rgb(28, 79, 116);
+    --col-link-hover: rgb(33, 144, 195);
+    --col-pre: rgb(188, 188, 188);
+
+    --col-text: rgb(0, 0, 0);
+
+    --tx-quick: 200ms;
+
+    --sz-height: 3rem;
+}
+
+.dark {
+    --col-body: linear-gradient(135deg,
+            hsl(0, 0%, 8%) 0%,
+            hsl(0, 0%, 3%) 100%);
+    --col-link-hover: rgb(28, 79, 116);
+    --col-link: rgb(33, 144, 195);
+    --col-pre: rgb(86, 86, 86);
+
+    --col-text: rgb(219, 219, 219);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+}
+
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+/* common style */
+
+body {
+    font-family: var(--ff-body);
+    font-weight: lighter;
+    font-size: var(--fz-body);
+    line-height: 1.6;
+    background-image: var(--col-body);
+}
+
+a,
+a:hover,
+a:visited,
+a:active {
+    text-decoration: none;
+    color: var(--col-link);
+    transition: color var(--tx-quick);
+}
+
+a:hover {
+    color: var(--col-link-hover);
+}
+
+hr {
+    border: none;
+    height: 1px;
+    border-bottom: 1px dashed var(--col-text);
+}
+
+pre {
+    font-family: monospace;
+    font-size: 1rem;
+    text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--ff-title);
+    padding-top: 1rem;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p,
+pre {
+    margin-top: 0.5rem;
+}
+
+pre {
+    background-color: var(--col-pre);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.svg-text {
+    position: relative;
+    top: 2px;
+    height: var(--fz-body);
+    width: var(--fz-body);
+    fill: var(--col-text);
+    display: inline;
+}
+
+/* svg logo */
+
+.svg-logo {
+    top: 0px;
+    height: 1.5rem;
+    width: 1.5rem;
+    fill: black;
+    transform: rotate(0turn);
+    transition: transform var(--tx-quick);
+}
+
+.svg-logo:hover,
+#logo:hover .svg-logo {
+    transform: rotate(0.5turn);
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dark .svg-logo {
+    fill: rgb(219, 219, 219);
+}
+
+@media screen and (max-width: 400px) {
+    #logo span {
+        display: none;
+    }
+}
+
+/* toggle between dark and light mode */
+
+#dark-mode-toggle {
+    position: relative;
+    border: 2px solid var(--col-text);
+    padding: 4px;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+#dark-mode-toggle::after {
+    content: "";
+    background-image: linear-gradient(135deg,
+            var(--col-text) 25%,
+            var(--col-text) 50%,
+            transparent 50%,
+            transparent 75%);
+    background-size: 200% 200%;
+    position: absolute;
+    height: calc(100% - 4px);
+    width: calc(100% - 4px);
+    top: 2px;
+    left: 2px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition-property: background-position;
+    transition-duration: var(--tx-quick);
+    background-position: 0% 0%;
+}
+
+body.dark #dark-mode-toggle::after {
+    transform: rotate(180deg);
+}
+
+#dark-mode-toggle:hover::after,
+body.dark #dark-mode-toggle:hover::after {
+    background-position: 50% 50%;
+}
+
+/* common style for header, posts and footer */
+
+.flex,
+.flex-children>li {
+    display: flex;
+    height: 3rem;
+    justify-content: center;
+    list-style: none;
+    align-items: center;
+    gap: 1rem;
+    white-space: nowrap;
+}
+
+.spacer {
+    flex: 1;
+}
+
+/* links */
+
+.nav-links a,
+.pagination a {
+    position: relative;
+}
+
+.nav-links a::after,
+.pagination a::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: calc(100% + 4px);
+    left: -2px;
+    bottom: -2px;
+    background-color: var(--col-link);
+    transform: scaleX(0);
+    transition: transform var(--tx-quick), background-color var(--tx-quick);
+    transform-origin: left;
+}
+
+a.selected::after {
+    transform: scaleX(1);
+}
+
+.nav-links a:hover::after {
+    background-color: var(--col-link-hover);
+    transform: scaleX(1);
+}
+
+.pagination a:hover::after {
+    background-color: var(--col-link-hover);
+}
+
+.pagination {
+    gap: 0.5rem;
+}
+
+/* header */
+
+header {
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px dashed var(--col-text);
+    margin-bottom: 1.5rem;
+}
+
+/* footer */
+
+footer {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+    border-top: 1px dashed var(--col-text);
+    margin-top: 1.5rem;
+}
+
+/* content */
+
+.content {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+}
+
+.posts>li>*:first-child {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post>*:first-child {
+    padding-top: 0;
+}
