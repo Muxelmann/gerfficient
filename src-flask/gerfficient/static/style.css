@@ -55,7 +55,7 @@ video {
     max-width: 100%;
 }
 
-/* common style */
+/* style */
 
 body {
     font-family: var(--ff-body);
@@ -78,16 +78,121 @@ a:hover {
     color: var(--col-link-hover);
 }
 
-hr {
-    border: none;
-    height: 1px;
-    border-bottom: 1px dashed var(--col-text);
-}
-
 pre {
     font-family: monospace;
     font-size: 1rem;
     text-align: left;
+}
+
+pre {
+    padding: 0.5rem;
+    background-color: var(--col-pre);
+    border-radius: 0.25rem;
+}
+
+.svg-text {
+    position: relative;
+    top: 2px;
+    height: var(--fz-body);
+    width: var(--fz-body);
+    fill: var(--col-text);
+    display: inline;
+}
+
+.title {
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.flex,
+.flex-children>li {
+    display: flex;
+    height: 3rem;
+    justify-content: center;
+    list-style: none;
+    align-items: center;
+    gap: 1rem;
+    white-space: nowrap;
+}
+
+.nav-links a,
+.pagination a {
+    position: relative;
+}
+
+.nav-links a::after,
+.pagination a::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: calc(100% + 4px);
+    left: -2px;
+    bottom: -2px;
+    background-color: var(--col-link);
+    transform: scaleX(0);
+    transition: transform var(--tx-quick), background-color var(--tx-quick);
+    transform-origin: left;
+}
+
+a.selected::after {
+    transform: scaleX(1);
+}
+
+.nav-links a:hover::after {
+    background-color: var(--col-link-hover);
+    transform: scaleX(1);
+}
+
+.pagination a:hover::after {
+    background-color: var(--col-link-hover);
+}
+
+.pagination {
+    gap: 0.5rem;
+}
+
+/* header */
+
+header {
+    padding-top: 4rem;
+    padding-bottom: 1.5rem;
+}
+
+/* footer */
+
+footer {
+    padding-top: 1.5rem;
+    padding-bottom: 4rem;
+}
+
+/* content */
+
+.content {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+}
+
+.posts>li>*:first-child {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post>* {
+    margin-top: 0.5rem;
+}
+
+.post .summary {
+    font-style: italic;
+}
+
+.post .meta {
+    text-align: center;
+    position: relative;
+    top: -1rem;
 }
 
 h1,
@@ -97,7 +202,8 @@ h4,
 h5,
 h6 {
     font-family: var(--ff-title);
-    padding-top: 1rem;
+    margin-top: 1.5rem;
+    line-height: 1;
 }
 
 h1 {
@@ -112,25 +218,28 @@ h3 {
     font-size: 1.5rem;
 }
 
-p,
-pre {
-    margin-top: 0.5rem;
+
+
+.spacer {
+    flex: 1;
+    margin: 1.5rem 0;
 }
 
-pre {
-    background-color: var(--col-pre);
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-}
-
-.svg-text {
+hr.spacer {
     position: relative;
-    top: 2px;
-    height: var(--fz-body);
-    width: var(--fz-body);
-    fill: var(--col-text);
-    display: inline;
+    border: none;
+    height: 1px;
+    margin-bottom: calc(1.5rem - 1px);
 }
+
+hr.spacer::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px dashed var(--col-text);
+}
+
 
 /* svg logo */
 
@@ -204,95 +313,4 @@ body.dark #dark-mode-toggle::after {
 #dark-mode-toggle:hover::after,
 body.dark #dark-mode-toggle:hover::after {
     background-position: 50% 50%;
-}
-
-/* common style for header, posts and footer */
-
-.flex,
-.flex-children>li {
-    display: flex;
-    height: 3rem;
-    justify-content: center;
-    list-style: none;
-    align-items: center;
-    gap: 1rem;
-    white-space: nowrap;
-}
-
-.spacer {
-    flex: 1;
-}
-
-/* links */
-
-.nav-links a,
-.pagination a {
-    position: relative;
-}
-
-.nav-links a::after,
-.pagination a::after {
-    content: "";
-    position: absolute;
-    height: 1px;
-    width: calc(100% + 4px);
-    left: -2px;
-    bottom: -2px;
-    background-color: var(--col-link);
-    transform: scaleX(0);
-    transition: transform var(--tx-quick), background-color var(--tx-quick);
-    transform-origin: left;
-}
-
-a.selected::after {
-    transform: scaleX(1);
-}
-
-.nav-links a:hover::after {
-    background-color: var(--col-link-hover);
-    transform: scaleX(1);
-}
-
-.pagination a:hover::after {
-    background-color: var(--col-link-hover);
-}
-
-.pagination {
-    gap: 0.5rem;
-}
-
-/* header */
-
-header {
-    padding-top: 4rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px dashed var(--col-text);
-    margin-bottom: 1.5rem;
-}
-
-/* footer */
-
-footer {
-    padding-top: 3rem;
-    padding-bottom: 4rem;
-    border-top: 1px dashed var(--col-text);
-    margin-top: 1.5rem;
-}
-
-/* content */
-
-.content {
-    max-width: 50rem;
-    margin: 0 auto;
-    padding: 0 0.5rem;
-}
-
-.posts>li>*:first-child {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.post>*:first-child {
-    padding-top: 0;
 }
