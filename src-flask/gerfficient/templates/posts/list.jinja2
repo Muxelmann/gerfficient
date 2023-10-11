@@ -1,0 +1,23 @@
+{% extends 'base.jinja2' %}
+
+{% block content %}
+
+<ul class="flex-children">
+    {% for i in range(10) %}
+    <li><a href="">Lorem ipsum dolor sit amet consectetur.</a>
+        <hr class="spacer"><time>2023-10-09</time>
+    </li>
+    {% endfor %}
+</ul>
+
+<ul class="flex pagination">
+    <li><a href="">Back</a></li>
+    <li><a href="">1</a></li>
+    <li><a class="selected" href="">2</a></li>
+    <li><a href="">3</a></li>
+    <li><span>...</span></li>
+    <li><a href="">6</a></li>
+    <li><a href="">Next</a></li>
+</ul>
+
+{% endblock content %}
