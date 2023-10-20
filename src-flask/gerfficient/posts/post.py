@@ -1,8 +1,13 @@
+import os
 import lorem
 import random
 import datetime
+from markdown import Markdown
+from typing import Self
 
 class Post:
+
+    posts_dir = None
 
     def __init__(self, id: str) -> None:
         self.id = id
@@ -25,7 +30,11 @@ class Post:
         return post
 
     @classmethod
-    def get_post_with_id(cls, id: str) -> 'Post':
+    def get_post_with_id(cls, id: str) -> Self | None:
+
+        if cls.post_dir is None or not os.path.exists(cls.posts_dir, id):
+            return None
+
         post = Post(id)
 
         return post
