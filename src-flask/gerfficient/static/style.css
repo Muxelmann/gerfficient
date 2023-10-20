@@ -82,9 +82,7 @@ pre {
     font-family: monospace;
     font-size: 1rem;
     text-align: left;
-}
-
-pre {
+    white-space: pre-wrap;
     padding: 0.5rem;
     background-color: var(--col-pre);
     border-radius: 0.25rem;
