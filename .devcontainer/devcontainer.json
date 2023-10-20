@@ -14,6 +14,9 @@
 	"forwardPorts": [
 		5000
 	],
+	"mounts": [
+		"source=${localWorkspaceFolder}/home-data,target=/home,type=bind,consistency=cached"
+	],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "pip3 install --user -r src-flask/requirements.txt"
 	// Configure tool-specific properties.
